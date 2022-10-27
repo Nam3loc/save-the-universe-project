@@ -8,6 +8,9 @@ const alienHorde = [];
 
 let hasWinner = false;
 
+
+
+
 // MAX & MIN FOR alienHorde RANDOMIZER
 let maxHull = 6;
 let minHull = 3;
@@ -52,6 +55,9 @@ const randomPropertyDec = (max, min) => {
     return rand;
 }
 
+
+
+
 // CLASSES
 
 class USSHelloWorld {
@@ -86,17 +92,26 @@ class AlienShip {
     }
 }
 
+
+
+
 // CREATING USS HelloWorld
 
 const USSHW = new USSHelloWorld();
 // console.log(USSHW);
 
+
+
+
+
 //CREATING alienHorde
 
-for(let i = 0; i < 2; i++) {
+for(let i = 0; i < 6; i++) {
     alienHorde.push(new AlienShip(randomPropertyInt(maxHull, minHull), randomPropertyInt(maxFirepower, minFirepower), randomPropertyDec(maxAccuracy, minAccuracy)));
 }
 // console.log(alienHorde);
+
+// =================================================== \\
 
 // BATTLE
 
@@ -153,44 +168,116 @@ We need an if statement that say
 and we need a return that returns the winner of the battle
 */
 
+// =================================================== \\
+
+
+
+
+
 // Champion Function
 
-const champion = (USSHW, alienHorde) => {
-    console.log(alienHorde);
-    console.log(USSHW);
+const champion = (USSHW, ship) => {
+    // console.log(alienHorde);
+    // console.log(USSHW);
 
     let winner;
     hasWinner = true;
-    if(USSHW.hull > 0 && alienHorde[0].hull <= 0){
+    if(USSHW.hull > 0 && ship.hull <= 0){
         winner = USSHW;
-        console.log('USS HelloWorld wins!');
-    }else if(alienHorde[0].hull > 0 && USSHW.hull <= 0){
-        winner = alienHorde[0];
-        console.log('The alien ship won!');
+        console.log('USS HelloWorld wins! You have destroyed the alien ship.');
+    }else if(ship.hull > 0 && USSHW.hull <= 0){
+        winner = ship;
+        console.log('The alien ship won! You have been destroyed.');
     } return winner;
 }
 
+// ==================Old Battle Func=================== \\
+
 // Battle Function
 
-const battle = (USSHW, alienHorde) => {
-    console.log(alienHorde);
+// const battle = (USSHW, alienHorde) => {
+//     console.log(alienHorde);
+//     console.log(USSHW);
+
+//     while(!hasWinner){
+//         if(USSHW.hull > 0 && alienHorde[0].hull > 0){
+//             USSHW.attack(alienHorde[0]);
+//         } else {
+//             return champion(USSHW, alienHorde);
+//         }
+//         if(USSHW.hull > 0 && alienHorde[0].hull > 0){
+//             alienHorde[0].attack(USSHW);
+//         } else {
+//             return champion(USSHW, alienHorde);
+//         }
+//     }
+// }
+
+// battle(USSHW, alienHorde);
+
+
+
+
+
+// ==================New Battle Func=================== \\
+
+const battle = (USSHW, ship) => {
+    // alienHorde.forEach((ship) => {
+        // console.log(ship)
+    
+    // console.log(alienHorde);
     console.log(USSHW);
 
-    while(!hasWinner){
-        if(USSHW.hull > 0 && alienHorde[0].hull > 0){
-            USSHW.attack(alienHorde[0]);
-        } else {
-            return champion(USSHW, alienHorde);
+        while(!hasWinner){
+            if(USSHW.hull > 0 && ship.hull > 0){
+                USSHW.attack(ship);
+            } else {
+                return champion(USSHW, ship);
+            }
+            if(USSHW.hull > 0 && ship.hull > 0){
+                ship.attack(USSHW);
+            } else {
+                return champion(USSHW, ship);
+            }
         }
-        if(USSHW.hull > 0 && alienHorde[0].hull > 0){
-            alienHorde[0].attack(USSHW);
-        } else {
-            return champion(USSHW, alienHorde);
-        }
-    }
+// });
 }
 
-battle(USSHW, alienHorde);
+// battle(USSHW, alienHorde);
 
 
+
+
+
+
+const war = (USSHW, alienHorde) => {
+    alienHorde.forEach((ship) => {
+        hasWinner = false;
+
+        battle(USSHW, ship);
+
+        // ===============Old War Logic=============== \\
+        // if(ship.hull > 0){
+        //     battle(USSHW, ship)
+        // } else {
+        //     return champion(USSHW, alienHorde);
+        // }
+        // if(USSHW > 0){
+        //     battle(USSHW, ship)
+        // } else {
+        //     return champion(USSHW, alienHorde);
+        // }
+    })
+}
+
+war(USSHW, alienHorde);
+
+/* ====================================================
+                    DOM Manipulation
+   ==================================================== */
+
+// Query Selectors
+
+const helloWorld = document.querySelector('#USSHW');
+const aliens = document.querySelector('#aliens');
 
