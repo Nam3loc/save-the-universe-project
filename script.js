@@ -69,7 +69,7 @@ class USSHelloWorld {
     attack(alienShip) {
         if(this.accuracy > randomizer()){
             alienShip.hull -= this.firepower;
-            console.log('You hit the alien ship!')
+            console.log('%c You HIT the alien ship!', 'color: green');
         } else {
             console.log('You missed!');
         }
@@ -85,7 +85,7 @@ class AlienShip {
     attack(USSHW) {
         if(this.accuracy > randomizer()){
             USSHW.hull -= this.firepower;
-            console.log('You have been hit!')
+            console.log('%c You have been HIT!', 'color: red')
         } else {
             console.log('They missed!')
         }
@@ -184,10 +184,10 @@ const champion = (USSHW, ship) => {
     hasWinner = true;
     if(USSHW.hull > 0 && ship.hull <= 0){
         winner = USSHW;
-        console.log('USS HelloWorld wins! You have destroyed the alien ship.');
+        console.log('%c USS HelloWorld wins! You have destroyed the alien ship.', 'font-size: 25px');
     }else if(ship.hull > 0 && USSHW.hull <= 0){
         winner = ship;
-        console.log('The alien ship won! You have been destroyed.');
+        console.log('%c The alien ship won! You have been destroyed.', 'font-size: 25px');
     } return winner;
 }
 
@@ -223,10 +223,15 @@ const champion = (USSHW, ship) => {
 
 const battle = (USSHW, ship) => {
     // alienHorde.forEach((ship) => {
-        // console.log(ship)
     
-    // console.log(alienHorde);
+    console.log("")
+    console.log("=====================================")
+    console.log('%c Battle Stats', 'font-size: 30px');
+    console.log("=====================================")
     console.log(USSHW);
+    console.log(ship);
+    console.log("=====================================")
+    console.log("")
 
         while(!hasWinner){
             if(USSHW.hull > 0 && ship.hull > 0){
@@ -281,3 +286,4 @@ war(USSHW, alienHorde);
 const helloWorld = document.querySelector('#USSHW');
 const aliens = document.querySelector('#aliens');
 
+const warVisual = document.querySelector('#text-box')
