@@ -166,9 +166,32 @@ We need an if statement that say
     }
 
 and we need a return that returns the winner of the battle
+
+// Retreat Function pseudocode
+Basic retreat is after a battle, the retreat button can show up for the DOM stuff. You click yes or no. if yes, then we can end the game with options of returning later.
+
+For the non-dom portion the retreat will show up in the console and recieve a user input (y: keep attack, n: return home)
 */
 
 // =================================================== \\
+
+
+
+
+// Retreat Function
+
+//I was having trouble with the prompt function. I am not able to even see a prompt in the console of the DOM or on my console in VSCode. I also tried window.prompt() and did not get anything.
+
+const decision = (USSHW) => {
+    if(USSHW === hasWinner){
+        if(prompt('If you want to stay and attack, type: y. If you want to return home, type: n.') === null){
+            battle(USSHW, ship);
+        } else {
+            console.log('I am returning home to regroup and come back for more.')
+        }
+    }
+}
+
 
 
 
@@ -260,6 +283,8 @@ const war = (USSHW, alienHorde) => {
         hasWinner = false;
 
         battle(USSHW, ship);
+        // decision(USSHW);
+
 
         // ===============Old War Logic=============== \\
         // if(ship.hull > 0){
@@ -286,4 +311,20 @@ war(USSHW, alienHorde);
 const helloWorld = document.querySelector('#USSHW');
 const aliens = document.querySelector('#aliens');
 
-const warVisual = document.querySelector('#text-box')
+const textBox = document.createElement('div');
+textBox.textContent = "THIS WAS SUPPOSED TO BE CONSOLE LOGGED INFO:::: Lorem ipsum dolor sit amet consectetur adipisicing elit. In distinctio impedit itaque recusandae, autem adipisci asperiores excepturi ipsam alias iure ullam assumenda doloribus vel suscipit facilis inventore, sed, accusamus commodi! Eos illum veritatis maxime adipisci tempore odit ex eaque quam incidunt eum laboriosam voluptates mollitia ipsa, in corrupti dignissimos pariatur nulla dolores praesentium omnis cupiditate quod doloribus. Aperiam, ex quaerat? Nobis nam unde ratione aliquid amet, obcaecati sapiente minima saepe ullam sequi exercitationem dignissimos impedit quibusdam, rerum eos quasi earum. Labore beatae, assumenda ad reiciendis et deleniti odio perspiciatis dolores? Eaque iusto, repudiandae nostrum deserunt hic asperiores nihil eius consequatur, itaque quidem magnam. Dignissimos nulla excepturi itaque voluptatum incidunt dicta impedit. Voluptatem a illum ratione odit corporis ipsam, fuga velit. Consequuntur sint, dolore quas consequatur ipsa impedit labore excepturi? Exercitationem molestiae maxime, explicabo reprehenderit sequi eaque quae porro vitae asperiores eos eius dolore repellat, praesentium adipisci quibusdam, cum alias accusantium!";
+textBox.classList.add('text-box');
+
+// Creating console.log to add to the DOM
+function print(value) {
+    console.log(value)
+}
+
+// Appending the clg to the DOM
+document.body.appendChild(textBox);
+
+
+//THING TO DO
+    //Figure out prompt() and finish the repeat function
+    //Figure out how to console log on the DOM and create my star wars animation console logging the battle
+    //Create animations between the USSHW and the alien ships shooting when they "hit" in the attack function

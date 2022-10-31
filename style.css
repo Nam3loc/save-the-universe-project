@@ -54,3 +54,22 @@ body {
     color: green;
     transform: rotate(180deg);
 }
+
+.text-box {
+    /* border: 2px solid white; */
+    height: 15%;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;font-size: 30px;
+    color: #fcd000;
+    /* perspective: 200px; */
+    font-weight: bold;
+    transform: rotateX(30deg);
+    animation: animateCrawl 20s ease-in;
+}
+
+/* Star Wars Text Crawl Animation */
+@keyframes animateCrawl {
+    0% { transform: rotateX(30deg) translateY(400px); }
+    100% { transform: rotateX(30deg) translateY(-300px); }
+   }
